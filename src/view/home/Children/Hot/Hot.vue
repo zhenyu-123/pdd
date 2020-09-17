@@ -27,11 +27,14 @@
     <div class="hot-cd">
       <img src="../../imgs/hot_ad/home_ad.gif" alt />
     </div>
+    <!-- 商品列表 -->
+    <HotShopList></HotShopList>
   </div>
 </template>
 
 <script>
 import HotNav from "./HotNav.vue";
+import HotShopList from "./HotShopList.vue"
 export default {
   data() {
     return {
@@ -54,6 +57,7 @@ export default {
   methods: {},
   components: {
     HotNav,
+    HotShopList
   },
 };
 </script>
