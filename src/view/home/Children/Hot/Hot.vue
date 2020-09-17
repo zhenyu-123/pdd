@@ -2,31 +2,36 @@
   <div class="hot">
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide class="swiper-lisde">
-        <img src="../imgs/rowing/s1.png" alt />
+        <img src="../../imgs/rowing/s1.png" alt />
       </swiper-slide>
       <swiper-slide class="swiper-lisde">
-        <img src="../imgs/rowing/s2.png" alt />
+        <img src="../../imgs/rowing/s2.png" alt />
       </swiper-slide>
       <swiper-slide class="swiper-lisde">
-        <img src="../imgs/rowing/s3.png" alt />
+        <img src="../../imgs/rowing/s3.png" alt />
       </swiper-slide>
       <swiper-slide class="swiper-lisde">
-        <img src="../imgs/rowing/s4.png" alt />
+        <img src="../../imgs/rowing/s4.png" alt />
       </swiper-slide>
       <swiper-slide class="swiper-lisde">
-        <img src="../imgs/rowing/s5.png" alt />
+        <img src="../../imgs/rowing/s5.png" alt />
       </swiper-slide>
       <swiper-slide class="swiper-lisde">
-        <img src="../imgs/rowing/s6.png" alt />
+        <img src="../../imgs/rowing/s6.png" alt />
       </swiper-slide>
       <div class="swiper-pagination" style="position:absolute;left:60%;" slot="pagination"></div>
     </swiper>
-
-    
+    <!-- 热点推荐下选项 -->
+    <HotNav></HotNav>
+    <!-- 广告位 -->
+    <div class="hot-cd">
+      <img src="../../imgs/hot_ad/home_ad.gif" alt />
+    </div>
   </div>
 </template>
 
 <script>
+import HotNav from "./HotNav.vue";
 export default {
   data() {
     return {
@@ -34,10 +39,10 @@ export default {
         pagination: {
           el: ".swiper-pagination",
         },
-        // autoplay: {
-        //   delay: 500,
-        //   disableOnInteraction: false, // 手动切换之后继续自动轮播
-        // },
+        autoplay: {
+          delay: 1000,
+          disableOnInteraction: false, // 手动切换之后继续自动轮播
+        },
         loop: true,
         // Some Swiper option/callback...
       },
@@ -45,25 +50,36 @@ export default {
   },
 
   created() {},
-  mounted() {
-
-  },
+  mounted() {},
   methods: {},
+  components: {
+    HotNav,
+  },
 };
 </script>
- 
-<style  scoped  lang="stylus">
-.hot  /deep/ .swiper-pagination{
-  position absolute
-  right:0 !important
+ <style scoped>
+.hot-cd {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f5f5f5;
 }
-.swiper-container-horizontal  /deep/ .swiper-pagination-bullets
+.hot-cd img {
+  margin: 8px 0;
+  background: #fff;
+  padding: 5px 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+<style  scoped  lang="stylus">
+.hot /deep/ .swiper-pagination
+  position absolute
+  right 0 !important
+.swiper-container-horizontal /deep/ .swiper-pagination-bullets
   width 3rem !important
-
 .swiper-pagination /deep/ .swiper-pagination-bullet-active
   background red !important
-
-  
 .swiper-lisde img
   height 150px !important
   height 150px !important
