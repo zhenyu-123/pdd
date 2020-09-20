@@ -1,24 +1,10 @@
 <template>
   <div class="hot">
     <swiper ref="mySwiper" :options="swiperOptions">
-      <swiper-slide class="swiper-lisde">
-        <img src="../../imgs/rowing/s1.png" alt />
+      <swiper-slide class="swiper-lisde" v-for="(item,index) in homecasual" :key="index">
+        <img :src="item.imgurl" alt />
       </swiper-slide>
-      <swiper-slide class="swiper-lisde">
-        <img src="../../imgs/rowing/s2.png" alt />
-      </swiper-slide>
-      <swiper-slide class="swiper-lisde">
-        <img src="../../imgs/rowing/s3.png" alt />
-      </swiper-slide>
-      <swiper-slide class="swiper-lisde">
-        <img src="../../imgs/rowing/s4.png" alt />
-      </swiper-slide>
-      <swiper-slide class="swiper-lisde">
-        <img src="../../imgs/rowing/s5.png" alt />
-      </swiper-slide>
-      <swiper-slide class="swiper-lisde">
-        <img src="../../imgs/rowing/s6.png" alt />
-      </swiper-slide>
+
       <div class="swiper-pagination" style="position:absolute;left:60%;" slot="pagination"></div>
     </swiper>
     <!-- 热点推荐下选项 -->
@@ -33,8 +19,9 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import HotNav from "./HotNav.vue";
-import HotShopList from "./HotShopList.vue"
+import HotShopList from "./HotShopList.vue";
 export default {
   data() {
     return {
@@ -51,13 +38,22 @@ export default {
       },
     };
   },
-
-  created() {},
-  mounted() {},
+  watch: {
+    homecasual() {
+      this.$nextTick(() => {});
+    },
+  },
+  mounted() {
+    //首页轮播图请求
+    this.$store.dispatch("reqHomeCasual");
+  },
+  computed: {
+    ...mapState(["homecasual"]),
+  },
   methods: {},
   components: {
     HotNav,
-    HotShopList
+    HotShopList,
   },
 };
 </script>
@@ -77,19 +73,30 @@ export default {
 }
 </style>
 <style  scoped  lang="stylus">
-.hot /deep/ .swiper-pagination
-  position absolute
-  right 0 !important
-.swiper-container-horizontal /deep/ .swiper-pagination-bullets
-  width 3rem !important
-.swiper-pagination /deep/ .swiper-pagination-bullet-active
-  background red !important
-.swiper-lisde img
-  height 150px !important
-  height 150px !important
-.hot /deep/ .swiper-lisde
-  width 100%
-  height 150px
-.hot
-  padding-top 46px
+.hot /deep/ .swiper-pagination {
+  position: absolute;
+  right: 0 !important;
+}
+
+.swiper-container-horizontal /deep/ .swiper-pagination-bullets {
+  width: 3rem !important;
+}
+
+.swiper-pagination /deep/ .swiper-pagination-bullet-active {
+  background: red !important;
+}
+
+.swiper-lisde img {
+  width 100%;
+  height: 150px !important;
+}
+
+.hot /deep/ .swiper-lisde {
+  width: 100%;
+  height: 150px;
+}
+
+.hot {
+  padding-top: 46px;
+}
 </style>
