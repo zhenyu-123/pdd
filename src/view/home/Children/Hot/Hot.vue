@@ -47,9 +47,8 @@ export default {
     },
   },
   async mounted() {
-    console.log(11)
     //首页导航请求
-    let result = await getHomeNav();
+    let result = await getHomeNav({id:1});
     console.log(result)
     //首页轮播图请求
     this.$store.dispatch("reqHomeCasual");
