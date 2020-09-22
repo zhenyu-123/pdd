@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "node index.js",
+    "server": "nodemon index.js --ignore client"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -13,11 +15,13 @@
     "loader": "^2.1.1",
     "ly-tab": "^2.1.2",
     "mint-ui": "^2.2.13",
-    "vue": "^2.6.12",
+    "mockjs": "^1.1.0",
     "swiper": "^5.3.6",
+    "vue": "^2.6.12",
     "vue-awesome-swiper": "^4.0.2",
     "vue-loader": "^15.7.0",
-    "vue-router": "^3.4.3"
+    "vue-router": "^3.4.3",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

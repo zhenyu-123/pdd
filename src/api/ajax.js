@@ -1,5 +1,6 @@
 import axios from "axios"
-export default function (url = '', params = {}, type = 'GET') {
+
+export default function (url, params = {}, type = 'GET') {
 
 
     let promise;
@@ -16,15 +17,20 @@ export default function (url = '', params = {}, type = 'GET') {
                 paramStr = paramStr.substr(0, paramStr.lastIndexOf("&"))
             }
             // 拼接完整的请求路径
-            url += '?' + paramStr
+            // url += '?' + paramStr
             //发起get请求
-            promise = axios.get(url)
+            const instance = axios.create({
+                baseURL: '/api/',
+                timeout:3000
+              });
+            promise = instance.get(url)
+            console.log(promise)
         } else if (type === "POST" || type === "post") {
             promise = axios.post(url, params)
         }
 
         // 返回请求后的结果
-        promise.then((respones) => {
+         promise.then((respones) => {
             resolve(respones.data)
         }).catch((error) => {
             reject(error)

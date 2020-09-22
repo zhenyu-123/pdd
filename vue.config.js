@@ -1,9 +1,18 @@
 module.exports = {
-    configureWebpack: config => {
-        if (process.env.NODE_ENV === 'production') {
-            // 为生产环境修改配置...
-        } else {
-            // 为开发环境修改配置...
+    devServer: {
+        open: true,
+        proxy: {
+            //开发环境
+            '/api': {
+                target: "http://localhost:3000",
+                ws: true, //如果要代理 websockets，配置这个参数
+                secure: false, // 如果是https接口，需要配置这个参数
+                changeOrigin: true, //是否跨域
+                pathRewrite: {
+                    '^/api':''
+                }
+            }
         }
-    }
+    },
+    publicPath: "./" //打包
 }
