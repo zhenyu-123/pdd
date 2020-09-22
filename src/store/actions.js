@@ -9,7 +9,7 @@ import {
 import data from "@/mock/index.js"
 export default {
     // 1. 获取首页轮播图    /解构
-    async reqHomeCasual({ commit }) {
+    async reqHomeCasual({ commit },callBack) {
        
         // getHomeCasual().then((response) => {
         //     console.log(response);
@@ -18,9 +18,11 @@ export default {
         // const result = await getHomeCasual();
         // if (200 === result.success_code) {
             // 此处提交过去的是一个数组
-            console.log(data.homecasual)
+           
             commit(HOME_CASUAL, { home_casual: data.homecasual[0].message});
-            //   callBack && callBack();
+              callBack && callBack();
         // }
     },
+
+     //
 }
