@@ -22,6 +22,9 @@
 import { mapState } from "vuex";
 import HotNav from "./HotNav.vue";
 import HotShopList from "./HotShopList.vue";
+//请求方法
+import { getHomeNav } from "../../../../api/index";
+
 export default {
   data() {
     return {
@@ -43,7 +46,11 @@ export default {
       this.$nextTick(() => {});
     },
   },
-  mounted() {
+  async mounted() {
+    console.log(11)
+    //首页导航请求
+    let result = await getHomeNav();
+    console.log(result)
     //首页轮播图请求
     this.$store.dispatch("reqHomeCasual");
   },
@@ -73,30 +80,19 @@ export default {
 }
 </style>
 <style  scoped  lang="stylus">
-.hot /deep/ .swiper-pagination {
-  position: absolute;
-  right: 0 !important;
-}
-
-.swiper-container-horizontal /deep/ .swiper-pagination-bullets {
-  width: 3rem !important;
-}
-
-.swiper-pagination /deep/ .swiper-pagination-bullet-active {
-  background: red !important;
-}
-
-.swiper-lisde img {
-  width 100%;
-  height: 150px !important;
-}
-
-.hot /deep/ .swiper-lisde {
-  width: 100%;
-  height: 150px;
-}
-
-.hot {
-  padding-top: 46px;
-}
+.hot /deep/ .swiper-pagination
+  position absolute
+  right 0 !important
+.swiper-container-horizontal /deep/ .swiper-pagination-bullets
+  width 3rem !important
+.swiper-pagination /deep/ .swiper-pagination-bullet-active
+  background red !important
+.swiper-lisde img
+  width 100%
+  height 150px !important
+.hot /deep/ .swiper-lisde
+  width 100%
+  height 150px
+.hot
+  padding-top 46px
 </style>

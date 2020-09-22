@@ -16,6 +16,10 @@ Vue.use(VueAwesomeSwiper)
 // 仓库
 import store from "./store"
 
+//开发环境
+if(process.env.NODE_ENV=="development"){
+  require("./api/mock.js")
+}
 
 Vue.config.productionTip = false
 
