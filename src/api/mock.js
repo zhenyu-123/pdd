@@ -5,12 +5,6 @@ Mock.setup({
 })
 
 // 拦截到某个请求，返回数据
-// Mock.mock("/api/user", {
-//     username: "小明",
-//     age: 12,
-//     birth: 1997,
-//     sex: "男"
-// })
 Mock.mock("/api/user", {
     username: "小明",
     age: 12,
