@@ -22,8 +22,7 @@
 import { mapState } from "vuex";
 import HotNav from "./HotNav.vue";
 import HotShopList from "./HotShopList.vue";
-//请求方法
-import { getUserData,getHomeNav } from "../../../../api/index";
+
 
 export default {
   data() {
@@ -46,14 +45,12 @@ export default {
       this.$nextTick(() => {});
     },
   },
-  async mounted() {
-    //首页导航请求
-    let result = await getUserData({id:1});
-    let result1 = await getHomeNav();
-    console.log(result)
-    console.log(result1)
+  mounted() {
+    //首页数据列表
+    this.$store.dispatch("getData");
+
     //首页轮播图请求
-    // this.$store.dispatch("reqHomeCasual");
+    this.$store.dispatch("reqHomeCasual");
   },
   computed: {
     ...mapState(["homecasual"]),
@@ -62,7 +59,7 @@ export default {
   components: {
     HotNav,
     HotShopList,
-  },
+  }
 };
 </script>
  <style scoped>

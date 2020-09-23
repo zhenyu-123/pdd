@@ -2,74 +2,34 @@
   <div>
     <div class="container">
       <ul class="list">
-        <li class="item">
-          <img src="../../imgs/shop_list/shop_item.png" alt />
-          <h4 class="list-item-title">【唐密】整条刺绣民族风围巾女士秋冬季中年妈妈羊绒羊毛披肩保暖</h4>
+        <li class="item" v-for="(item,index) in datalist" :key="index">
+          <img :src="item.image" alt />
+          <h4 class="list-item-title">{{item.title}}</h4>
           <div class="list-item-bottom">
-            <span class="item-price">￥23.3</span>
-            <span class="iten-count">已拼2323件</span>
+            <span class="item-price">￥{{item.price}}</span>
+            <span class="iten-count">已拼{{item.number}}件</span>
             <span class="item-user">
-              <img src="../../imgs/shop_list/user1.jpg" alt />
-              <img src="../../imgs/shop_list/user2.jpg" alt />
+              <img :src="item.img1" alt />
+              <img :src="item.img2" alt />
             </span>
             <span class="item-buy">
               <button>去拼单></button>
             </span>
           </div>
         </li>
-        <li class="item">
-          <img src="../../imgs/shop_list/shop_item.png" alt />
-          <h4 class="list-item-title">【唐密】整条刺绣民族风围巾女士秋冬季中年妈妈羊绒羊毛披肩保暖</h4>
-          <div class="list-item-bottom">
-            <span class="item-price">￥23.3</span>
-            <span class="iten-count">已拼2323件</span>
-            <span class="item-user">
-              <img src="../../imgs/shop_list/user1.jpg" alt />
-              <img src="../../imgs/shop_list/user2.jpg" alt />
-            </span>
-            <span class="item-buy">
-              <button>去拼单></button>
-            </span>
-          </div>
-        </li>
-        <li class="item">
-          <img src="../../imgs/shop_list/shop_item.png" alt />
-          <h4 class="list-item-title">【唐密】整条刺绣民族风围巾女士秋冬季中年妈妈羊绒羊毛披肩保暖</h4>
-          <div class="list-item-bottom">
-            <span class="item-price">￥23.3</span>
-            <span class="iten-count">已拼2323件</span>
-            <span class="item-user">
-              <img src="../../imgs/shop_list/user1.jpg" alt />
-              <img src="../../imgs/shop_list/user2.jpg" alt />
-            </span>
-            <span class="item-buy">
-              <button>去拼单></button>
-            </span>
-          </div>
-        </li>
-        <li class="item">
-          <img src="../../imgs/shop_list/shop_item.png" alt />
-          <h4 class="list-item-title">【唐密】整条刺绣民族风围巾女士秋冬季中年妈妈羊绒羊毛披肩保暖</h4>
-          <div class="list-item-bottom">
-            <span class="item-price">￥23.3</span>
-            <span class="iten-count">已拼2323件</span>
-            <span class="item-user">
-              <img src="../../imgs/shop_list/user1.jpg" alt />
-              <img src="../../imgs/shop_list/user2.jpg" alt />
-            </span>
-            <span class="item-buy">
-              <button>去拼单></button>
-            </span>
-          </div>
-        </li>
+ 
       </ul>
     </div>
   </div>
 </template>
  <script>
+ import {mapState} from "vuex"
 export default {
   data() {
     return {};
+  },
+  computed: {
+    ...mapState(['datalist'])
   },
   methods: {},
 };
@@ -102,11 +62,10 @@ export default {
 .list .item .list-item-bottom .item-price {
   font-size: 18px;
   color: red;
-  
 }
 .list .item .list-item-bottom .iten-count {
-flex: 1;
-margin-left: 5px;
+  flex: 1;
+  margin-left: 5px;
 }
 .list .item .list-item-bottom .item-user {
   display: flex;

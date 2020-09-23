@@ -99,82 +99,86 @@ export default {
       barMoveWidth: 0,
     };
   },
-   computed:{
-      innerBarStyle(){
-        return {
-          width: `${this.barXWidth}px`,
-          left: `${this.barMoveWidth}px`
-        }
+  computed: {
+    innerBarStyle() {
+      return {
+        width: `${this.barXWidth}px`,
+        left: `${this.barMoveWidth}px`,
+      };
+    },
+  },
+  created() {},
+  mounted() {
+    this.getBottomBarWidth();
+    this.bindEvent();
+  },
+  methods: {
+    // 获取滚动条的长度
+    getBottomBarWidth() {
+      this.barXWidth = this.bgBarW * (this.screenW / this.scrollContentW);
+    },
+    // 移动端事件监听
+    bindEvent() {
+      this.$el.addEventListener("touchstart", this.handleTouchStart, false);
+      this.$el.addEventListener("touchmove", this.handleTouchMove, false);
+      this.$el.addEventListener("touchend", this.handleTouchEnd, false);
+    },
+    // 开始触摸
+    handleTouchStart(event) {
+      // console.log(event.touches);
+      // 1. 获取第一个触点
+      let touch = event.touches[0];
+      // 2.求出起始点
+      this.startX = Number(touch.pageX);
+      // console.log(this.startX);
+    },
+    // 开始移动
+    handleTouchMove(event) {
+      // 1. 获取第一个触点
+      let touch = event.touches[0];
+      // 2. 求出移动的距离
+      let moveWidth = Number(touch.pageX) - this.startX;
+      // console.log(moveWidth);
+      // 3. 求出滚动条走的距离
+      this.barMoveWidth = -(
+        (this.bgBarW / this.scrollContentW) * moveWidth -
+        this.endFlag
+      );
+      // 4. 边界值处理
+      if (this.barMoveWidth <= 0) {
+        // 左边
+        this.barMoveWidth = 0;
+      } else if (this.barMoveWidth >= this.bgBarW - this.barXWidth) {
+        // 右边
+        this.barMoveWidth = this.bgBarW - this.barXWidth;
       }
     },
-  created() {},
-   mounted() {
-       this.getBottomBarWidth();
-       this.bindEvent();
+    // 结束触摸
+    handleTouchEnd() {
+      // console.log('结束触摸');
+      this.endFlag = this.barMoveWidth;
     },
-    methods:{
-      // 获取滚动条的长度
-      getBottomBarWidth(){
-        this.barXWidth = this.bgBarW * (this.screenW / this.scrollContentW)
-       
-      },
-      // 移动端事件监听
-      bindEvent(){
-         this.$el.addEventListener('touchstart',this.handleTouchStart,false);
-         this.$el.addEventListener('touchmove',this.handleTouchMove,false);
-         this.$el.addEventListener('touchend',this.handleTouchEnd,false);
-      },
-      // 开始触摸
-      handleTouchStart(event){
-         // console.log(event.touches);
-         // 1. 获取第一个触点
-        let touch = event.touches[0];
-         // 2.求出起始点
-        this.startX = Number(touch.pageX);
-        // console.log(this.startX);
-      },
-      // 开始移动
-      handleTouchMove(event){
-        // 1. 获取第一个触点
-        let touch = event.touches[0];
-        // 2. 求出移动的距离
-        let moveWidth = Number(touch.pageX) - this.startX;
-        // console.log(moveWidth);
-        // 3. 求出滚动条走的距离
-        this.barMoveWidth = -((this.bgBarW / this.scrollContentW) * moveWidth - this.endFlag);
-        // 4. 边界值处理
-        if(this.barMoveWidth <= 0){ // 左边
-          this.barMoveWidth = 0;
-        }else if(this.barMoveWidth >= this.bgBarW - this.barXWidth){ // 右边
-          this.barMoveWidth = this.bgBarW - this.barXWidth;
-        }
-      },
-      // 结束触摸
-      handleTouchEnd(){
-        // console.log('结束触摸');
-        this.endFlag = this.barMoveWidth;
-      },
-    }
+  },
 };
 </script>
 <style scoped lang="stylus">
-//去掉横向滚动条
+// 去掉横向滚动条
 .content::-webkit-scrollbar
-      display none
-    .hot-nav-bottom
-      width 100px
-      height 2px
-      background-color #ccc
-      position absolute
-      left 50%
-      margin-left -50px
-      bottom 8px
-      .hot-nav-bottom-inner
-         position absolute
-         left 0
-         height 100%
-         background-color orangered
-         width 0
+  display none
+.hot-nav-bottom
+  width 100px
+  height 2px
+  background-color #ccc
+  position absolute
+  left 50%
+  margin-left -50px
+  bottom 8px
+  .hot-nav-bottom-inner
+    position absolute
+    left 0
+    height 100%
+    background-color orangered
+    width 0
 </style>
 <style scoped>
 .box {
@@ -197,7 +201,7 @@ export default {
   flex-wrap: wrap;
 }
 .box .content .content-scroll .item {
-    /* 一屏幕放8个，一个宽90px ，一屏幕宽360px，两屏幕720px */
+  /* 一屏幕放8个，一个宽90px ，一屏幕宽360px，两屏幕720px */
   width: 90px;
   height: 90px;
   display: block;
@@ -208,7 +212,7 @@ export default {
 }
 .box .content .content-scroll .item img {
   width: 40%;
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
 .box .content .content-scroll .item span {
   font-size: 11px;

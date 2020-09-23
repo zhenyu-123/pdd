@@ -4,18 +4,59 @@ Mock.setup({
     timeout: "100"
 })
 
-// 拦截到某个请求，返回数据
-Mock.mock("/api/user", {
-    username: "小明",
-    age: 12,
-    birth: 1997,
-    sex: "男"
+// 首页数据模拟
+// 轮播图
+Mock.mock("/api/homecasual", {
+
+    data: [{
+            "id": 1,
+            "imgurl": "@image",
+            "detail": "http://mobile.yangkeduo.com/subject.html?subject_id=6153"
+        },
+        {
+            "id": 2,
+            "imgurl": "@image",
+            "detail": "http://mobile.yangkeduo.com/subject.html?subject_id=6153"
+        }, {
+            "id": 3,
+            "imgurl": "@image",
+            "detail": "http://mobile.yangkeduo.com/subject.html?subject_id=6153"
+        }
+    ],
+    code: 200
 })
-Mock.mock("/api/homenav", {
-    username: "213小明",
-    age: 12,
-    birth: 1997,
-    sex: "男"
+// 首页数据列表
+Mock.mock("/api/datalist", {
+    data: [{
+            "id": "@increment()",
+            "image": "@image",
+            "title": "@csentence(9,20)",
+            "price|2-10000": 10000,
+            "number|2-9999": 9999,
+            "img1": "@image",
+            "img2": "@image"
+        },
+        {
+
+            "id": "@increment()",
+            "image": "@image",
+            "title": "@csentence(9,20)",
+            "price|2-10000": 10000,
+            "number|2-9999": 9999,
+            "img1": "@image",
+            "img2": "@image"
+        },
+        {
+            "id": "@increment()",
+            "image": "@image",
+            "title": "@csentence(9,20)",
+            "price|2-10000": 10000,
+            "number|2-9999": 9999,
+            "img1": "@image",
+            "img2": "@image"
+        }
+    ],
+    code: 200
 })
 //随机生成
 Mock.mock("/homenav", {
