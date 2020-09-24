@@ -9,4 +9,6 @@ export const getHomeCasual = () => ajax('/homecasual');
 //  请求首页数据列表 
 export const getData = () =>ajax('/datalist')
 
+// 请求推荐列表数据
+export const getrecommend=()=>ajax("/recommend")
 

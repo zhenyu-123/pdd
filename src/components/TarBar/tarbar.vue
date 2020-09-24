@@ -40,7 +40,7 @@ export default {
   mounted() {},
   methods: {
       switchTab(path){
-          console.log(this.$route)
+          // console.log(this.$route)
           
           this.$router.replace(path)
       }

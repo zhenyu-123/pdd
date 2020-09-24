@@ -2,12 +2,12 @@
   <div>
     <div class="container">
       <ul class="list">
-        <li class="item" v-for="(item,index) in datalist" :key="index">
+        <li class="item" v-for="(item, index) in datalist" :key="index">
           <img :src="item.image" alt />
-          <h4 class="list-item-title">{{item.title}}</h4>
+          <h4 class="list-item-title">{{ item.title }}</h4>
           <div class="list-item-bottom">
-            <span class="item-price">￥{{item.price}}</span>
-            <span class="iten-count">已拼{{item.number}}件</span>
+            <span class="item-price">￥{{ item.price }}</span>
+            <span class="iten-count">已拼{{ item.number }}件</span>
             <span class="item-user">
               <img :src="item.img1" alt />
               <img :src="item.img2" alt />
@@ -17,26 +17,32 @@
             </span>
           </div>
         </li>
- 
       </ul>
     </div>
   </div>
 </template>
  <script>
- import {mapState} from "vuex"
+import { mapState } from "vuex";
 export default {
   data() {
     return {};
   },
   computed: {
-    ...mapState(['datalist'])
+    ...mapState(["datalist"]),
   },
   methods: {},
-};
+  mounted() {
+   console.log(this.datalist)
+   
+  },
+  watch:{
+    datalist(nValue){
+        console.log(nValue)
+    }
+  }
+}; 
 </script>
  <style scoped>
-.list {
-}
 .list .item {
   width: 100%;
   margin-bottom: 10px;

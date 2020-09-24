@@ -1,11 +1,19 @@
 <template>
   <div class="hot">
     <swiper ref="mySwiper" :options="swiperOptions">
-      <swiper-slide class="swiper-lisde" v-for="(item,index) in homecasual" :key="index">
+      <swiper-slide
+        class="swiper-lisde"
+        v-for="(item, index) in homecasual"
+        :key="index"
+      >
         <img :src="item.imgurl" alt />
       </swiper-slide>
 
-      <div class="swiper-pagination" style="position:absolute;left:60%;" slot="pagination"></div>
+      <div
+        class="swiper-pagination"
+        style="position: absolute; left: 60%"
+        slot="pagination"
+      ></div>
     </swiper>
     <!-- 热点推荐下选项 -->
     <HotNav></HotNav>
@@ -22,7 +30,6 @@
 import { mapState } from "vuex";
 import HotNav from "./HotNav.vue";
 import HotShopList from "./HotShopList.vue";
-
 
 export default {
   data() {
@@ -42,15 +49,16 @@ export default {
   },
   watch: {
     homecasual() {
-      this.$nextTick(() => {});
-    },
+      this.$nextTick(() => {
+        
+      });
+    }
   },
   mounted() {
-    //首页数据列表
-    this.$store.dispatch("getData");
-
     //首页轮播图请求
     this.$store.dispatch("reqHomeCasual");
+    //首页数据列表
+    this.$store.dispatch("getDatas");
   },
   computed: {
     ...mapState(["homecasual"]),
@@ -59,7 +67,7 @@ export default {
   components: {
     HotNav,
     HotShopList,
-  }
+  },
 };
 </script>
  <style scoped>
