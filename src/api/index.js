@@ -12,3 +12,6 @@ export const getData = () =>ajax('/datalist')
 // 请求推荐列表数据
 export const getrecommend=()=>ajax("/recommend")
 
+//搜索页数据
+
+export const getsearth=()=> ajax("/searth")

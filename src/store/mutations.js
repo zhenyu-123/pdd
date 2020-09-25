@@ -1,7 +1,8 @@
 import {
     HOME_CASUAL,
     REC_LIST,
-    HOME_SHOP_LIST
+    HOME_SHOP_LIST,
+    SEARTH
 } from './mutation-types'
 export default {
     //['home_casual'],为了将公共的变量转为字符串,从而使用常量替代mutation事件类型
@@ -12,8 +13,8 @@ export default {
         state.homecasual = home_casual;
         callback && callback()
     },
-      //推荐页数据列表
-      [REC_LIST](state, {
+    //推荐页数据列表
+    [REC_LIST](state, {
         rec_list
     }) {
         state.reclist = rec_list;
@@ -23,5 +24,10 @@ export default {
         data_list
     }) {
         state.datalist = data_list
+    },
+    [SEARTH](state, {
+        searthlist
+    }) {
+        state.searchgoods = searthlist
     }
 }

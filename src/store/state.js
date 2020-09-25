@@ -4,5 +4,7 @@ export default {
    // 首页数据列表
    datalist: [],
    //推荐数据列表
-   reclist: []
+   reclist: [],
+   // 搜索页数据
+   searchgoods:[],
 }

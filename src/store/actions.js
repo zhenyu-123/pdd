@@ -1,14 +1,15 @@
 //请求方法
 import {
     getHomeCasual,
-    getData, getrecommend
+    getData, getrecommend,getsearth
 } from "../api/index"
 
 //mutation
 import {
     HOME_CASUAL,
     HOME_SHOP_LIST,
-    REC_LIST
+    REC_LIST,
+    SEARTH
 } from "./mutation-types"
 export default {
     // 1. 获取首页轮播图    /解构
@@ -38,6 +39,13 @@ export default {
         let result =  await getrecommend();
         if(result.code==200){
             commit(REC_LIST,{rec_list:result.data})
+        }
+    },
+    // 搜索数据
+    async reqSearchGoods({commit}){
+        let result = await getsearth();
+        if(result.code==200){
+            commit(SEARTH,{searthlist:result.data})
         }
     }
 }
