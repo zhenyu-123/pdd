@@ -3,8 +3,8 @@ import App from './App.vue'
 import router from "./router"
 // js库
 import "./assets/css/reset.css"
-import FastClick from 'fastclick'
-FastClick.attach(document.body)
+// import FastClick from 'fastclick'
+// FastClick.attach(document.body)
 // 首页tab组件
 import LyTab from 'ly-tab'
 Vue.use(LyTab)
