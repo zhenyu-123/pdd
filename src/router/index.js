@@ -48,6 +48,9 @@ export default new vueRouter({
                     {
                          path: "Hot",
                          component: Hot,
+                         meta:{
+                              index:1
+                         }
                     },
                     {
                          path: "Mbaby",
@@ -72,18 +75,30 @@ export default new vueRouter({
           {
                path: "/recommend",
                component: Recommend,
+               meta:{
+                    index:2
+               }
           },
           {
                path: "/search",
                component: Search,
+               meta:{
+                    index:3
+               }
           },
           {
                path: "/chart",
                component: Chart,
+               meta:{
+                    index:4
+               }
           },
           {
                path: "/me",
                component: Me,
+               meta:{
+                    index:5
+               }
           },
           //在/#/下默认打开首页
           {

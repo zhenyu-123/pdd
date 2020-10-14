@@ -1,0 +1,67 @@
+/*路由切换 animation start */
+
+.slide-left-enter-active,
+
+.slide-left-leave-active {
+
+  transition: 0.3s transform ease;
+
+  backface-visibility: hidden;
+
+  perspective: 1000;
+
+}
+
+.slide-left-enter {
+
+  transform: translate3d(-100%, 0, 0);
+
+}
+
+.slide-left-enter-to,
+
+.slide-left-leave {
+
+  transform: translate3d(0%, 0, 0);
+
+}
+
+.slide-left-leave-to {
+
+  transform: translate3d(100%, 0, 0);
+
+}
+
+.slide-right-enter-active,
+
+.slide-right-leave-active {
+
+  transition: 0.3s all ease-out;
+
+  backface-visibility: hidden;
+
+  perspective: 1000;
+
+}
+
+.slide-right-enter {
+
+  transform: translate3d(100%, 0, 0);
+
+}
+
+.slide-right-enter-to,
+
+.slide-right-leave {
+
+  transform: translate3d(0, 0, 0);
+
+}
+
+.slide-right-leave-to {
+
+  transform: translate3d(-100%, 0, 0);
+
+}
+
+/*路由切换 animation end */

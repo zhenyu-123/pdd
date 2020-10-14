@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SearthNav />
+    <SearthNav :showSearchPanel="showSearchPanel" />
     <!-- 分类 -->
     <div class="shop">
       <!--左边-->
@@ -46,11 +46,14 @@
         </ul>
       </div>
     </div>
+    <!--显示面板-->
+    <search-panel v-if="isShow" :showSearchPanel="showSearchPanel" />
   </div>
 </template>
 
 <script>
-import SearthNav from "./children/SearthcNav";
+import SearthNav from "./children/SearchNav";
+import SearchPanel from "./children/SearchPanel";
 import BetterScroll from "better-scroll";
 import { mapState } from "vuex";
 export default {
@@ -66,20 +69,22 @@ export default {
     this.$store.dispatch("reqSearchGoods");
   },
   methods: {
+    // 1.1 是否显示搜索的面板
+    showSearchPanel(flag) {
+      this.isShow = flag;
+    },
     // 1.1 初始化
     initscroll() {
       // 1.1左边
       this.leftScroll = new BetterScroll(this.$refs.menulistw, {
         click: true,
         tap: true,
- 
       });
       // 1.2右边
       this.rightScroll = new BetterScroll(".shop-wrapper", {
         probeType: 3,
         click: true,
         tap: true,
-        
       });
       // 1.3 监听右侧的滑动事件
       this.rightScroll.on("scroll", (pos) => {
@@ -103,11 +108,11 @@ export default {
       // 1.2.4 更新数据
       this.rightLiTops = tempArr;
 
-      console.log(this.rightLiTops);
+      // console.log(this.rightLiTops);
     },
     // 1.3  点击切换
     clickLeftItem(index) {
-      console.log(1);
+      // console.log(1);
       this.scrollY = this.rightLiTops[index];
       this.rightScroll.scrollTo(0, -this.scrollY, 300);
     },
@@ -143,10 +148,11 @@ export default {
         // 1.2 求出右边所有版块的头部位置
         this._initRightLiTops();
       });
-    },
+    }
   },
   components: {
     SearthNav,
+    SearchPanel,
   },
 };
 /**
@@ -157,116 +163,86 @@ export default {
  */
 </script>
 <style scoped lang="stylus">
-@import '../../common/stylus/mixins.styl';
-
-.search {
-  background: #F5F5F5;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.shop {
-  display: flex;
-  position: absolute;
-  top: 60px;
-  bottom: 50px;
-  width: 100%;
-  overflow: hidden;
-
-  .menu-wrapper {
-    background-color: #e0e0e0;
-    width: 80px;
-    flex: 0 0 80px;
-
-    .menu-item {
-      width: 100%;
-      height: 60px;
-      background-color: #fafafa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: lighter;
-      color: #666666;
-      position: relative;
-    }
-
-    .current {
-      color: #e02e24;
-    }
-
-    .current::before {
-      content: '';
-      background-color: #e02e24;
-      width: 4px;
-      height: 30px;
-      position: absolute;
-      left: 0;
-    }
-  }
-
-  .shop-wrapper {
-    flex: 1;
-    background-color: #fff;
-
-    .shops-title {
-      display: flex;
-      flex-direction: row;
-      padding: 0 10px;
-      height: 44px;
-      align-items: center;
-      justify-content: space-between;
-      color: #999;
-
-      a {
-        color: #999;
-        text-decoration: none;
-        font-weight: lighter;
-      }
-    }
-
-    .shops-items {
-      display: flex;
-      flex-wrap: wrap;
-
-      li {
-        display: flex;
-        flex-direction: column;
-        width: 33.3%;
-        height: 90px;
-        justify-content: center;
-        align-items: center;
-        color: #666;
-        font-weight: lighter;
-        font-size: 14px;
-
-        img {
-          width: 60%;
-          height: 60%;
-          margin-bottom: 5px;
-        }
-      }
-    }
-
-    .phone-type {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      border-bottom-1px(#ccc);
-
-      li {
-        width: 33.3%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 5px 0;
-
-        img {
-          width: 70%;
-        }
-      }
-    }
-  }
-}
+@import '../../common/stylus/mixins.styl'
+.search
+  background #F5F5F5
+  width 100%
+  height 100%
+  overflow hidden
+.shop
+  display flex
+  position absolute
+  top 60px
+  bottom 50px
+  width 100%
+  overflow hidden
+  .menu-wrapper
+    background-color #e0e0e0
+    width 80px
+    flex 0 0 80px
+    .menu-item
+      width 100%
+      height 60px
+      background-color #fafafa
+      display flex
+      justify-content center
+      align-items center
+      font-weight lighter
+      color #666666
+      position relative
+    .current
+      color #e02e24
+    .current::before
+      content ''
+      background-color #e02e24
+      width 4px
+      height 30px
+      position absolute
+      left 0
+  .shop-wrapper
+    flex 1
+    background-color #fff
+    .shops-title
+      display flex
+      flex-direction row
+      padding 0 10px
+      height 44px
+      align-items center
+      justify-content space-between
+      color #999
+      a
+        color #999
+        text-decoration none
+        font-weight lighter
+    .shops-items
+      display flex
+      flex-wrap wrap
+      li
+        display flex
+        flex-direction column
+        width 33.3%
+        height 90px
+        justify-content center
+        align-items center
+        color #666
+        font-weight lighter
+        font-size 14px
+        img
+          width 60%
+          height 60%
+          margin-bottom 5px
+    .phone-type
+      width 100%
+      display flex
+      flex-direction row
+      flex-wrap wrap
+      border-bottom-1px(#ccc)
+      li
+        width 33.3%
+        display flex
+        justify-content center
+        align-items center
+        margin 5px 0
+        img
+          width 70%
 </style>
