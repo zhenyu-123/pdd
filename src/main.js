@@ -12,7 +12,8 @@ Vue.use(LyTab)
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
-
+//字體
+import '@/common/css/style.css'
 // 仓库
 import store from "./store"
 
